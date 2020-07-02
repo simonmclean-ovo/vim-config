@@ -59,7 +59,6 @@ let g:camelcasemotion_key = '<leader>'
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Mappings
-:map <C-f> :Ag<CR>
 :map \| :vertical split<CR>
 :map - :split<CR>
 
@@ -78,7 +77,7 @@ set undodir=~/.vim/undo//
 call plug#begin('~/.vim/plugged')
 
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
