@@ -1,8 +1,3 @@
-" Setup
-" - To make FZF respect gitignore, run brew install the_silver_searcher
-" - Install Nerd Fonts
-" - Install ranger and ranger_devicons
-
 " Some basics
 set encoding=UTF-8
 set incsearch
