@@ -10,34 +10,9 @@ set modifiable
 let mapleader = " "
 set t_Co=256
 
-source ~/.vim/configs/truecolor.vim
-source ~/.vim/configs/startify.vim
-source ~/.vim/configs/coc.vim
-source ~/.vim/configs/airline.vim
-source ~/.vim/configs/NERDTree.vim
-source ~/.vim/configs/fzf.vim
-
-" Auto re-read file when it's changed, if there are no local changes
-set autoread
-
-" Use the old regex engine (performance fix)
-autocmd FileType css scss less sass regexpengine=1
-
 " Syntax highlighting
 syntax on
 set synmaxcol=200
-
-let g:polyglot_disabled = ['vue']
-let g:vue_pre_processors='detect_on_enter'
-
-" indentline
-let g:indentLine_char = '¦'
-
-" Toggle back and forth between two buffers
-command! -nargs=0 PrevBuffer :b#
-
-" prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " formatting
 filetype plugin indent on
@@ -52,13 +27,16 @@ set nowrap
 highlight LineNr ctermfg=grey
 set number
 
-" Camelcase motion
-let g:camelcasemotion_key = '<leader>'
+" Auto re-read file when it's changed, if there are no local changes
+set autoread
 
-" WhichKey
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" Use the old regex engine (performance fix)
+autocmd FileType css scss less sass regexpengine=1
 
-" Mappings
+let g:polyglot_disabled = ['vue']
+let g:vue_pre_processors='detect_on_enter'
+
+" Window control
 :map \| :vertical split<CR>
 :map - :split<CR>
 
@@ -72,6 +50,27 @@ if !isdirectory($HOME . "/.vim/undo")
     call mkdir($HOME . "/.vim/undo", "p", 0700)
 endif
 set undodir=~/.vim/undo//
+
+" Overrides for diff view
+if &diff
+    syntax off
+endif
+
+" Toggle back and forth between two buffers
+command! -nargs=0 PrevBuffer :b#
+
+" Source vimrc
+command! -nargs=0 Sauce :source ~/.vimrc
+
+source ~/.vim/configs/truecolor.vim
+source ~/.vim/configs/startify.vim
+source ~/.vim/configs/coc.vim
+source ~/.vim/configs/airline.vim
+source ~/.vim/configs/NERDTree.vim
+source ~/.vim/configs/fzf.vim
+source ~/.vim/configs/indentline.vim
+source ~/.vim/configs/camelcasemotion.vim
+source ~/.vim/configs/whichkey.vim
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -108,9 +107,9 @@ Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
 
 " theme config should come after plugins to avoid issues
-source ~/.vim/configs/codedark.vim
-" source ~/.vim/configs/molokai.vim
-" source ~/.vim/configs/onedark.vim
-" source ~/.vim/configs/hybrid-material.vim
+source ~/.vim/configs/themes/codedark.vim
+" source ~/.vim/configs/themes/molokai.vim
+" source ~/.vim/configs/themes/onedark.vim
+" source ~/.vim/configs/themes/hybrid-material.vim
 
 source ~/.vim/configs/italic-highlights.vim

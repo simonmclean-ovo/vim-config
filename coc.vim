@@ -93,6 +93,9 @@ omap ac <Plug>(coc-classobj-a)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
+" prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
