@@ -24,5 +24,8 @@ highlight typescriptNull cterm=italic
 highlight typescriptAccessibilityModifier cterm=italic 
 highlight typescriptBoolean cterm=italic 
 
+" JavaScript
+highlight jsFunction cterm=italic
+
 " JSX
 highlight jsxAttrib cterm=italic

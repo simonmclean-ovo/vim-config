@@ -51,18 +51,34 @@ if !isdirectory($HOME . "/.vim/undo")
 endif
 set undodir=~/.vim/undo//
 
-" Overrides for diff view
-if &diff
-    syntax off
-endif
-
 " Toggle back and forth between two buffers
 command! -nargs=0 PrevBuffer :b#
 
 " Source vimrc
 command! -nargs=0 Sauce :source ~/.vimrc
 
-source ~/.vim/configs/truecolor.vim
+" Open this file
+command! -nargs=0 VimConfig :e ~/.vim/configs/index.vim
+
+function! s:ChangeTagName()
+  call inputsave()
+  let l:rawInput = input('Change to: ')
+  call inputrestore()
+  let l:trimmedInput = trim(rawInput)
+  " TODO: This conditional doesn't work
+  if len(trimmedInput) > 0
+    :execute "normal! mmvat\<esc>'<wciw".trimmedInput
+    :execute "normal! '>wciw".trimmedInput
+    :execute "normal! 'm"
+  endif
+endfunction
+
+nnoremap ctn :call ChangeTagName()<CR>
+
+" TODO: Function to remove tag and fix indentation
+" TODO: Function to set tab width
+
+" Plugin configs
 source ~/.vim/configs/startify.vim
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/airline.vim
@@ -71,6 +87,9 @@ source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/whichkey.vim
+
+" Misc config
+source ~/.vim/configs/truecolor.vim
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -106,7 +125,7 @@ Plug 'kristijanhusak/vim-hybrid-material'
 
 call plug#end()
 
-" theme config should come after plugins to avoid issues
+" theme configs
 source ~/.vim/configs/themes/codedark.vim
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
