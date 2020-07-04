@@ -60,22 +60,32 @@ command! -nargs=0 Sauce :source ~/.vimrc
 " Open this file
 command! -nargs=0 VimConfig :e ~/.vim/configs/index.vim
 
-function! s:ChangeTagName()
+function! <SID>ChangeTagName()
   call inputsave()
   let l:rawInput = input('Change to: ')
   call inputrestore()
   let l:trimmedInput = trim(rawInput)
-  " TODO: This conditional doesn't work
-  if len(trimmedInput) > 0
-    :execute "normal! mmvat\<esc>'<wciw".trimmedInput
-    :execute "normal! '>wciw".trimmedInput
-    :execute "normal! 'm"
+  :execute "normal! mmvat\<esc>`<wcW".trimmedInput
+  :execute "normal! `>ci</".trimmedInput
+  :execute "normal! `m"
+endfunction
+
+function! <SID>DeleteTag()
+  :execute "normal! vato\<esc>"
+  let l:openLine = line(".")
+  :execute "normal! vat\<esc>"
+  let l:closeLine = line(".")
+  if (openLine == closeLine) 
+    :execute "normal! ditvatp"
+  else
+    :execute "normal! `<dd`>dd"
+    " TODO: Maybe format the block that was between the tags?
   endif
 endfunction
 
-nnoremap ctn :call ChangeTagName()<CR>
+nnoremap ctn :call <SID>ChangeTagName()<CR>
+nnoremap dt :call <SID>DeleteTag()<CR>
 
-" TODO: Function to remove tag and fix indentation
 " TODO: Function to set tab width
 
 " Plugin configs
