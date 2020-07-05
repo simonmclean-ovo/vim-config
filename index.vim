@@ -1,34 +1,20 @@
 " Some basics
-set encoding=UTF-8
-set incsearch
-set backspace=start,eol,indent
-set ruler
 set cursorline
 set showcmd
 set clipboard=unnamed
 set modifiable
 let mapleader = " "
-set t_Co=256
 
 " Syntax highlighting
-syntax on
 set synmaxcol=200
 
 " formatting
-filetype plugin indent on
 set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set autoindent
 set nowrap
 
 " Line numbers
 highlight LineNr ctermfg=grey
 set number
-
-" Auto re-read file when it's changed, if there are no local changes
-set autoread
 
 " Use the old regex engine (performance fix)
 autocmd FileType css scss less sass regexpengine=1
@@ -58,19 +44,29 @@ command! -nargs=0 PrevBuffer :b#
 command! -nargs=0 Sauce :source ~/.vimrc
 
 " Open this file
-command! -nargs=0 VimConfig :e ~/.vim/configs/index.vim
+command! -nargs=0 Config :e ~/.vim/configs/index.vim
 
-function! <SID>ChangeTagName()
+" TODO: Handle self closing tags
+" - Changing tag name, and
+" - Changing tag to self closing like 'tagname/'
+function! <SID>ChangeElementName()
   call inputsave()
-  let l:rawInput = input('Change to: ')
+  let l:rawInput = input('Change element to: ')
   call inputrestore()
   let l:trimmedInput = trim(rawInput)
-  :execute "normal! mmvat\<esc>`<wcW".trimmedInput
-  :execute "normal! `>ci</".trimmedInput
+  " mark, vis select tag, move to start of vis select
+  :execute "normal! mmvat\<esc>`<"
+  " search to next space or >
+  :execute "normal! / \\|>\<cr>"
+  " change back to <
+  :execute "normal! cT<" . trimmedInput
+  " jump to end of vis select, write closing tag
+  :execute "normal! `>ci</" . trimmedInput
+  " return to mark
   :execute "normal! `m"
 endfunction
 
-function! <SID>DeleteTag()
+function! <SID>DeleteElement()
   :execute "normal! vato\<esc>"
   let l:openLine = line(".")
   :execute "normal! vat\<esc>"
@@ -83,10 +79,37 @@ function! <SID>DeleteTag()
   endif
 endfunction
 
-nnoremap ctn :call <SID>ChangeTagName()<CR>
-nnoremap dt :call <SID>DeleteTag()<CR>
+" TODO: Doesn't work for <div>thingtoexpand</div>
+function! <SID>ExpandElement()
+  execute ":normal! diWi<\<esc>pa></\<esc>pa>\<esc>?>\<cr>"
+endfunction
 
-" TODO: Function to set tab width
+" TODO: Cursor pos stuff at the end doesn't work
+function! <SID>InsertElement()
+  call inputsave()
+  let l:rawInput = input('Insert element: ')
+  call inputrestore()
+  let l:trimmedInput = trim(l:rawInput)
+  let l:lastChar = strpart(trimmedInput, strlen(trimmedInput) - 1)
+  :execute "normal! i<".trimmedInput
+  if (l:lastChar == '/')
+    :execute "normal! xa />"
+    :normal! 3h
+  else
+    :execute "normal! a></".l:trimmedInput.">"
+    :normal! ?>n
+  endif
+endfunction
+
+" TODO: this
+function! <SID>DropLine()
+endfunction
+
+nnoremap <leader>ce :call <SID>ChangeElementName()<CR>
+nnoremap <leader>de :call <SID>DeleteElement()<CR>
+nnoremap <leader>ee :call <SID>ExpandElement()<CR>
+nnoremap <leader>ie :call <SID>InsertElement()<CR>
+nnoremap <leader>o :call <SID>DropLine()<CR>
 
 " Plugin configs
 source ~/.vim/configs/startify.vim
@@ -104,6 +127,7 @@ source ~/.vim/configs/truecolor.vim
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-sensible'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -126,6 +150,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'mhinz/vim-startify'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-sleuth'
 
 " themes
 Plug 'tomasr/molokai'
