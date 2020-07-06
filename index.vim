@@ -123,6 +123,7 @@ source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/whichkey.vim
+source ~/.vim/configs/git-gutter.vim
 
 " Misc config
 source ~/.vim/configs/truecolor.vim
