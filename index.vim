@@ -147,7 +147,6 @@ Plug 'yggdroot/indentline'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'bkad/camelcasemotion'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'mhinz/vim-startify'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-sleuth'
