@@ -16,7 +16,6 @@ set expandtab
 set nowrap
 
 " Line numbers
-highlight LineNr ctermfg=grey
 set number
 
 " Use the old regex engine (performance fix)
@@ -39,9 +38,6 @@ if !isdirectory($HOME . "/.vim/undo")
     call mkdir($HOME . "/.vim/undo", "p", 0700)
 endif
 set undodir=~/.vim/undo//
-
-" Toggle back and forth between two buffers
-command! -nargs=0 PrevBuffer :b#
 
 " Source vimrc
 command! -nargs=0 Sauce :source ~/.vimrc
