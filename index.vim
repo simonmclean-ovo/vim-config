@@ -111,7 +111,6 @@ nnoremap <leader>ie :call <SID>InsertElement()<CR>
 nnoremap <leader>o :call <SID>DropLine()<CR>
 
 " Plugin configs
-source ~/.vim/configs/startify.vim
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/NERDTree.vim
@@ -150,6 +149,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'francoiscabrol/ranger.vim'
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-eunuch'
 
 " themes
 Plug 'tomasr/molokai'
