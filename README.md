@@ -35,8 +35,6 @@ Profiles > Terminal and set "Report Terminal Type" to "xterm-256color-italic".
 
 Restart iTerm2.
 
-Next
-
 ## TODO
 
 Continue splitting up the `index.vim` into smaller modules
