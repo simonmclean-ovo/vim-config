@@ -5,6 +5,9 @@ set clipboard=unnamed
 set modifiable
 let mapleader = " "
 
+" Disable cursorline in quickfix
+autocmd FileType qf set nocursorline
+
 " Syntax highlighting
 set synmaxcol=200
 
