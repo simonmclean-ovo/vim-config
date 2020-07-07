@@ -113,7 +113,6 @@ nnoremap <leader>o :call <SID>DropLine()<CR>
 " Plugin configs
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/airline.vim
-source ~/.vim/configs/NERDTree.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/camelcasemotion.vim
@@ -134,7 +133,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
