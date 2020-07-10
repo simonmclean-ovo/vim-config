@@ -8,6 +8,12 @@ source ~/.vim/configs/index.vim
 
 ## Prerequisites
 
+Install bat syntax highlight in preview windows
+
+```
+brew install bat
+```
+
 To make FZF respect gitignore, install Silver Searcher.
 
 ```
