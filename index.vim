@@ -110,6 +110,10 @@ nnoremap <leader>ee :call <SID>ExpandElement()<CR>
 nnoremap <leader>ie :call <SID>InsertElement()<CR>
 nnoremap <leader>o :call <SID>DropLine()<CR>
 
+" Scroll up and down without moving the cursor
+map <C-k> <C-Y>
+map <C-j> <C-E>
+
 " Plugin configs
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
@@ -158,9 +162,9 @@ Plug 'tomasr/molokai'
 call plug#end()
 
 " theme configs
-" source ~/.vim/configs/themes/hybrid-material.vim
+source ~/.vim/configs/themes/codedark.vim
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
-source ~/.vim/configs/themes/codedark.vim
+" source ~/.vim/configs/themes/hybrid-material.vim
 
 source ~/.vim/configs/italic-highlights.vim
