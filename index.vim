@@ -111,13 +111,13 @@ nnoremap <leader>ie :call <SID>InsertElement()<CR>
 nnoremap <leader>o :call <SID>DropLine()<CR>
 
 " Plugin configs
-source ~/.vim/configs/coc.vim
 source ~/.vim/configs/airline.vim
-source ~/.vim/configs/fzf.vim
-source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/camelcasemotion.vim
-source ~/.vim/configs/whichkey.vim
+source ~/.vim/configs/coc.vim
+source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
+source ~/.vim/configs/indentline.vim
+source ~/.vim/configs/whichkey.vim
 
 " Misc config
 source ~/.vim/configs/truecolor.vim
@@ -125,42 +125,42 @@ source ~/.vim/configs/truecolor.vim
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-sensible'
-Plug 'mileszs/ack.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'bkad/camelcasemotion'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-Plug 'posva/vim-vue'
 Plug 'vim-scripts/svg.vim'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'yggdroot/indentline'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'bkad/camelcasemotion'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'francoiscabrol/ranger.vim'
-Plug 'thaerkh/vim-workspace'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-eunuch'
 
 " themes
-Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
-Plug 'tomasiser/vim-code-dark'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'tomasiser/vim-code-dark'
+Plug 'tomasr/molokai'
 
 call plug#end()
 
 " theme configs
-source ~/.vim/configs/themes/codedark.vim
+" source ~/.vim/configs/themes/hybrid-material.vim
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
-" source ~/.vim/configs/themes/hybrid-material.vim
+source ~/.vim/configs/themes/codedark.vim
 
 source ~/.vim/configs/italic-highlights.vim
