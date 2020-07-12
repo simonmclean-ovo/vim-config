@@ -18,9 +18,6 @@ set nowrap
 " Line numbers
 set number
 
-" Use the old regex engine (performance fix)
-autocmd FileType css scss less sass regexpengine=1
-
 " Window control
 :map \| :vertical split<CR>
 :map - :split<CR>
