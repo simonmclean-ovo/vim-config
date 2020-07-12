@@ -1,31 +1,5 @@
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! GitStatus()
-  return system("git status --porcelain " . shellescape(expand("%")))
-endfunction
-
-function! StatuslineGit()
-  let l:result = ""
-  let l:branchname = GitBranch()
-  " Show branch name if applicable
-  if (strlen(l:branchname) > 0)
-    let l:result = l:branchname
-    let l:fileStatus = trim(GitStatus())
-    if (strlen(l:fileStatus) > 0)
-      " Show status code if applicable
-      let l:firstChar = strcharpart(l:fileStatus, 0, 1)
-      if (l:firstChar != "f")
-        let l:result = l:result . "[" . l:firstChar . "]"
-      endif
-    endif
-  endif
-  return l:result
-endfunction
-
-" Simplfiy the git info (just shows branchname)
-let g:airline_section_b = '%{StatuslineGit()}'
+" Don't show hunk changes
+let g:airline#extensions#hunks#enabled = 0
 
 " Remove file encoding section
 let g:airline_section_y = ''
