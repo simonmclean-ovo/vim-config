@@ -21,9 +21,6 @@ set number
 " Use the old regex engine (performance fix)
 autocmd FileType css scss less sass regexpengine=1
 
-let g:polyglot_disabled = ['vue']
-let g:vue_pre_processors='detect_on_enter'
-
 " Window control
 :map \| :vertical split<CR>
 :map - :split<CR>
@@ -121,6 +118,7 @@ source ~/.vim/configs/coc.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
+source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
 
 " Misc config
