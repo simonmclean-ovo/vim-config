@@ -5,6 +5,9 @@ set clipboard=unnamed
 set modifiable
 let mapleader = " "
 
+" Auto remove trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
 " Disable cursorline in quickfix
 autocmd FileType qf set nocursorline
 
