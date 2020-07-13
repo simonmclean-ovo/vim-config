@@ -3,6 +3,8 @@ set cursorline
 set showcmd
 set clipboard=unnamed
 set modifiable
+set ignorecase
+set smartcase
 let mapleader = " "
 
 " Auto remove trailing whitespace
