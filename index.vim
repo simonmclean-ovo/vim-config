@@ -27,7 +27,7 @@ set number
 :map \| :vertical split<CR>
 :map - :split<CR>
 
-" Move junk files 
+" Move junk files
 if !isdirectory($HOME . "/.vim/swap")
     call mkdir($HOME . "/.vim/swap", "p", 0700)
 endif
@@ -69,7 +69,7 @@ function! <SID>DeleteElement()
   let l:openLine = line(".")
   :execute "normal! vat\<esc>"
   let l:closeLine = line(".")
-  if (openLine == closeLine) 
+  if (openLine == closeLine)
     :execute "normal! ditvatp"
   else
     :execute "normal! `<dd`>dd"
@@ -117,6 +117,7 @@ map <C-j> <C-E>
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/coc.vim
+source ~/.vim/configs/emmet.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
@@ -136,6 +137,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'posva/vim-vue'
