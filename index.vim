@@ -44,6 +44,28 @@ command! -nargs=0 Sauce :source ~/.vimrc
 " Open this file
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
 
+" Floating terminal
+function! <SID>FloatTerm(cmd = 'zsh')
+  let l:width = float2nr(&columns * 0.85)
+  let l:height = float2nr(&lines * 0.8)
+  let l:termOptions = { 'hidden': 1, 'term_finish': 'close' }
+  let l:bufferN = term_start(a:cmd, l:termOptions)
+  let l:popupOptions = {
+    \ 'title': ' ' . a:cmd,
+    \ 'minwidth': l:width,
+    \ 'maxwidth': l:width,
+    \ 'minheight': l:height,
+    \ 'maxheight': l:height,
+    \ 'border': [],
+    \ 'borderchars': ['─', '│', '─', '│', '┌', '┐', '┘', '└'],
+    \ 'padding': [0,1,0,1]
+   \ }
+  let l:windowID = popup_create(l:bufferN, l:popupOptions)
+  return l:windowID
+endfunction
+command! -nargs=? FTerm :call <SID>FloatTerm(<f-args>)
+nnoremap <C-t> :FTerm<CR>
+
 " TODO: Handle self closing tags
 " - Changing tag name, and
 " - Changing tag to self closing like 'tagname/'
