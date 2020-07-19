@@ -45,6 +45,8 @@ command! -nargs=0 Sauce :source ~/.vimrc
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
 
 " Floating terminal
+" TODO: Figure out how to toggle popup so that terminal persists
+" Should be possible https://github.com/vim/vim/issues/5666
 function! <SID>FloatTerm(cmd = 'zsh')
   let l:width = float2nr(&columns * 0.85)
   let l:height = float2nr(&lines * 0.8)
@@ -64,7 +66,7 @@ function! <SID>FloatTerm(cmd = 'zsh')
   return l:windowID
 endfunction
 command! -nargs=? FTerm :call <SID>FloatTerm(<f-args>)
-nnoremap <C-t> :FTerm<CR>
+nnoremap <C-w>t :FTerm<CR>
 
 " TODO: Handle self closing tags
 " - Changing tag name, and
