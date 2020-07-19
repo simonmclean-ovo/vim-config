@@ -77,28 +77,6 @@ function! <SID>DeleteElement()
   endif
 endfunction
 
-" TODO: Doesn't work for <div>thingtoexpand</div>
-function! <SID>ExpandElement()
-  execute ":normal! diWi<\<esc>pa></\<esc>pa>\<esc>?>\<cr>"
-endfunction
-
-" TODO: Cursor pos stuff at the end doesn't work
-function! <SID>InsertElement()
-  call inputsave()
-  let l:rawInput = input('Insert element: ')
-  call inputrestore()
-  let l:trimmedInput = trim(l:rawInput)
-  let l:lastChar = strpart(trimmedInput, strlen(trimmedInput) - 1)
-  :execute "normal! i<".trimmedInput
-  if (l:lastChar == '/')
-    :execute "normal! xa />"
-    :normal! 3h
-  else
-    :execute "normal! a></".l:trimmedInput.">"
-    :normal! ?>n
-  endif
-endfunction
-
 " TODO: this
 function! <SID>DropLine()
 endfunction
