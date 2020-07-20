@@ -27,7 +27,7 @@ set number
 :map \| :vertical split<CR>
 :map - :split<CR>
 
-" Move junk files 
+" Move junk files
 if !isdirectory($HOME . "/.vim/swap")
     call mkdir($HOME . "/.vim/swap", "p", 0700)
 endif
@@ -43,6 +43,30 @@ command! -nargs=0 Sauce :source ~/.vimrc
 
 " Open this file
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
+
+" Floating terminal
+" TODO: Figure out how to toggle popup so that terminal persists
+" Should be possible https://github.com/vim/vim/issues/5666
+function! <SID>FloatTerm(cmd = 'zsh')
+  let l:width = float2nr(&columns * 0.85)
+  let l:height = float2nr(&lines * 0.8)
+  let l:termOptions = { 'hidden': 1, 'term_finish': 'close' }
+  let l:bufferN = term_start(a:cmd, l:termOptions)
+  let l:popupOptions = {
+    \ 'title': ' ' . a:cmd,
+    \ 'minwidth': l:width,
+    \ 'maxwidth': l:width,
+    \ 'minheight': l:height,
+    \ 'maxheight': l:height,
+    \ 'border': [],
+    \ 'borderchars': ['─', '│', '─', '│', '┌', '┐', '┘', '└'],
+    \ 'padding': [0,1,0,1]
+   \ }
+  let l:windowID = popup_create(l:bufferN, l:popupOptions)
+  return l:windowID
+endfunction
+command! -nargs=? FTerm :call <SID>FloatTerm(<f-args>)
+nnoremap <C-w>t :FTerm<CR>
 
 " TODO: Handle self closing tags
 " - Changing tag name, and
@@ -69,33 +93,11 @@ function! <SID>DeleteElement()
   let l:openLine = line(".")
   :execute "normal! vat\<esc>"
   let l:closeLine = line(".")
-  if (openLine == closeLine) 
+  if (openLine == closeLine)
     :execute "normal! ditvatp"
   else
     :execute "normal! `<dd`>dd"
     " TODO: Maybe format the block that was between the tags?
-  endif
-endfunction
-
-" TODO: Doesn't work for <div>thingtoexpand</div>
-function! <SID>ExpandElement()
-  execute ":normal! diWi<\<esc>pa></\<esc>pa>\<esc>?>\<cr>"
-endfunction
-
-" TODO: Cursor pos stuff at the end doesn't work
-function! <SID>InsertElement()
-  call inputsave()
-  let l:rawInput = input('Insert element: ')
-  call inputrestore()
-  let l:trimmedInput = trim(l:rawInput)
-  let l:lastChar = strpart(trimmedInput, strlen(trimmedInput) - 1)
-  :execute "normal! i<".trimmedInput
-  if (l:lastChar == '/')
-    :execute "normal! xa />"
-    :normal! 3h
-  else
-    :execute "normal! a></".l:trimmedInput.">"
-    :normal! ?>n
   endif
 endfunction
 
@@ -117,6 +119,7 @@ map <C-j> <C-E>
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/coc.vim
+source ~/.vim/configs/emmet.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
@@ -136,6 +139,8 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vista.vim'
+Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'posva/vim-vue'
