@@ -21,11 +21,18 @@ highlight typescriptClassExtends cterm=italic
 highlight typescriptIdentifier cterm=italic
 highlight typescriptDefault cterm=italic
 highlight typescriptNull cterm=italic
-highlight typescriptAccessibilityModifier cterm=italic 
-highlight typescriptBoolean cterm=italic 
+highlight typescriptAccessibilityModifier cterm=italic
+highlight typescriptBoolean cterm=italic
 
 " JavaScript
 highlight jsFunction cterm=italic
+highlight jsStorageClass cterm=italic
+highlight jsNull cterm=italic
+highlight jsUndefined cterm=italic
+highlight jsBooleanTrue cterm=italic
+highlight jsBooleanFalse cterm=italic
+highlight jsClassKeyword cterm=italic
+highlight jsExport cterm=italic
 
 " JSX
 highlight jsxAttrib cterm=italic
