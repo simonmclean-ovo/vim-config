@@ -44,30 +44,6 @@ command! -nargs=0 Sauce :source ~/.vimrc
 " Open this file
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
 
-" Floating terminal
-" TODO: Figure out how to toggle popup so that terminal persists
-" Should be possible https://github.com/vim/vim/issues/5666
-function! <SID>FloatTerm(cmd = 'zsh')
-  let l:width = float2nr(&columns * 0.85)
-  let l:height = float2nr(&lines * 0.8)
-  let l:termOptions = { 'hidden': 1, 'term_finish': 'close' }
-  let l:bufferN = term_start(a:cmd, l:termOptions)
-  let l:popupOptions = {
-    \ 'title': ' ' . a:cmd,
-    \ 'minwidth': l:width,
-    \ 'maxwidth': l:width,
-    \ 'minheight': l:height,
-    \ 'maxheight': l:height,
-    \ 'border': [],
-    \ 'borderchars': ['─', '│', '─', '│', '┌', '┐', '┘', '└'],
-    \ 'padding': [0,1,0,1]
-   \ }
-  let l:windowID = popup_create(l:bufferN, l:popupOptions)
-  return l:windowID
-endfunction
-command! -nargs=? FTerm :call <SID>FloatTerm(<f-args>)
-nnoremap <C-w>t :FTerm<CR>
-
 " TODO: Handle self closing tags
 " - Changing tag name, and
 " - Changing tag to self closing like 'tagname/'
@@ -120,6 +96,7 @@ source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/emmet.vim
+source ~/.vim/configs/floaterm.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
@@ -134,7 +111,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bkad/camelcasemotion'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -156,6 +132,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/svg.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
 
 " themes

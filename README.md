@@ -22,7 +22,7 @@ brew install the_silver_searcher
 
 Install Nerd Fonts.
 
-Install ranger and ranger_devicons.
+Install lf
 
 ### Enable italics
 
