@@ -44,6 +44,15 @@ command! -nargs=0 Sauce :source ~/.vimrc
 " Open this file
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
 
+" Function to show the highlight groups of whatever's under the cursor
+command! -nargs=0 ShowHighlightGroups :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " TODO: Handle self closing tags
 " - Changing tag name, and
 " - Changing tag to self closing like 'tagname/'
@@ -110,6 +119,7 @@ source ~/.vim/configs/truecolor.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'arcticicestudio/nord-vim'
 Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -144,9 +154,10 @@ Plug 'tomasr/molokai'
 call plug#end()
 
 " theme configs
-source ~/.vim/configs/themes/codedark.vim
+" source ~/.vim/configs/themes/codedark.vim
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
 " source ~/.vim/configs/themes/hybrid-material.vim
+source ~/.vim/configs/themes/nord.vim
 
 source ~/.vim/configs/italic-highlights.vim
