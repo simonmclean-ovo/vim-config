@@ -5,6 +5,7 @@ set clipboard=unnamed
 set modifiable
 set ignorecase
 set smartcase
+set relativenumber
 let mapleader = " "
 
 " Auto remove trailing whitespace
