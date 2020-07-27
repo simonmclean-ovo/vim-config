@@ -1,7 +1,6 @@
 " Some basics
 set cursorline
 set showcmd
-set clipboard=unnamed
 set modifiable
 set ignorecase
 set smartcase
