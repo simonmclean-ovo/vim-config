@@ -7,6 +7,13 @@ set smartcase
 set relativenumber
 let mapleader = " "
 
+" Abbreviations
+func Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+iabbr clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
+
 " Auto remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
