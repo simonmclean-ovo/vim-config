@@ -100,9 +100,6 @@ endfunction
 
 nnoremap <leader>ce :call <SID>ChangeElementName()<CR>
 nnoremap <leader>de :call <SID>DeleteElement()<CR>
-nnoremap <leader>ee :call <SID>ExpandElement()<CR>
-nnoremap <leader>ie :call <SID>InsertElement()<CR>
-nnoremap <leader>o :call <SID>DropLine()<CR>
 
 " Scroll up and down without moving the cursor
 map <C-k> <C-Y>
@@ -119,6 +116,7 @@ source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
+source ~/.vim/configs/yoink.vim
 
 " Misc config
 source ~/.vim/configs/truecolor.vim
@@ -140,6 +138,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'svermeulen/vim-yoink'
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
