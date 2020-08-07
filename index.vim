@@ -161,6 +161,8 @@ Plug 'tomasr/molokai'
 call plug#end()
 
 " theme configs
+" TODO: Instead of commenting things out, use autocmd or similar to
+" conditionally apply theme configs
 " source ~/.vim/configs/themes/codedark.vim
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
