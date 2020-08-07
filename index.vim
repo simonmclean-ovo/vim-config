@@ -5,6 +5,7 @@ set modifiable
 set ignorecase
 set smartcase
 set relativenumber
+set clipboard=unnamed
 let mapleader = " "
 
 " Abbreviations
