@@ -4,9 +4,14 @@ set showcmd
 set modifiable
 set ignorecase
 set smartcase
+set number
 set relativenumber
 set clipboard=unnamed
+set nowrap
 let mapleader = " "
+
+" Syntax highlighting
+set synmaxcol=200
 
 " Abbreviations
 func Eatchar(pat)
@@ -20,16 +25,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Disable cursorline in quickfix
 autocmd FileType qf set nocursorline
-
-" Syntax highlighting
-set synmaxcol=200
-
-" formatting
-set expandtab
-set nowrap
-
-" Line numbers
-set number
 
 " Window control
 :map \| :vertical split<CR>
