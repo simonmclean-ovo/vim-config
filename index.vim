@@ -100,6 +100,10 @@ nnoremap <leader>de :call <SID>DeleteElement()<CR>
 map <C-k> <C-Y>
 map <C-j> <C-E>
 
+" Jumps
+map [q :cprevious<CR>
+map ]q :cnext<CR>
+
 " Plugin configs
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
