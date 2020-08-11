@@ -96,6 +96,12 @@ endfunction
 nnoremap <leader>ce :call <SID>ChangeElementName()<CR>
 nnoremap <leader>de :call <SID>DeleteElement()<CR>
 
+function <SID>GitLogLines(start, end)
+  :execute "Git log -L " . a:start . "," . a:end . ":" . expand('%')
+endfunction
+
+command! -range Glines :call <SID>GitLogLines(<line1>, <line2>)
+
 " Scroll up and down without moving the cursor
 map <C-k> <C-Y>
 map <C-j> <C-E>
