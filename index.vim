@@ -110,6 +110,8 @@ map <C-j> <C-E>
 map [q :cprevious<CR>
 map ]q :cnext<CR>
 
+nnoremap ; :
+
 " Plugin configs
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
