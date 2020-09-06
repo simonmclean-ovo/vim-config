@@ -27,8 +27,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd FileType qf set nocursorline
 
 " Window control
-:map \| :vertical split<CR>
-:map - :split<CR>
+nnoremap \| :vertical split<CR>
+nnoremap - :split<CR>
 
 " Move junk files
 if !isdirectory($HOME . "/.vim/swap")
@@ -101,10 +101,6 @@ function <SID>GitLogLines(start, end)
 endfunction
 
 command! -range Glines :call <SID>GitLogLines(<line1>, <line2>)
-
-" Scroll up and down without moving the cursor
-map <C-k> <C-Y>
-map <C-j> <C-E>
 
 " Jumps
 map [q :cprevious<CR>
