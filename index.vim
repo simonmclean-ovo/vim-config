@@ -117,6 +117,7 @@ source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/emmet.vim
+source ~/.vim/configs/floaterm.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
@@ -155,6 +156,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/svg.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
 
 " themes
