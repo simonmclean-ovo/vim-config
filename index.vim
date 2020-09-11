@@ -56,45 +56,9 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" TODO: Handle self closing tags
-" - Changing tag name, and
-" - Changing tag to self closing like 'tagname/'
-function! <SID>ChangeElementName()
-  call inputsave()
-  let l:rawInput = input('Change element to: ')
-  call inputrestore()
-  let l:trimmedInput = trim(rawInput)
-  " mark, vis select tag, move to start of vis select
-  :execute "normal! mmvat\<esc>`<"
-  " search to next space or >
-  :execute "normal! / \\|>\<cr>"
-  " change back to <
-  :execute "normal! cT<" . trimmedInput
-  " jump to end of vis select, write closing tag
-  :execute "normal! `>ci</" . trimmedInput
-  " return to mark
-  :execute "normal! `m"
-endfunction
-
-function! <SID>DeleteElement()
-  :execute "normal! vato\<esc>"
-  let l:openLine = line(".")
-  :execute "normal! vat\<esc>"
-  let l:closeLine = line(".")
-  if (openLine == closeLine)
-    :execute "normal! ditvatp"
-  else
-    :execute "normal! `<dd`>dd"
-    " TODO: Maybe format the block that was between the tags?
-  endif
-endfunction
-
 " TODO: this
 function! <SID>DropLine()
 endfunction
-
-nnoremap <leader>ce :call <SID>ChangeElementName()<CR>
-nnoremap <leader>de :call <SID>DeleteElement()<CR>
 
 function <SID>GitLogLines(start, end)
   :execute "Git log -L " . a:start . "," . a:end . ":" . expand('%')
