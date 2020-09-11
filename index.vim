@@ -96,7 +96,6 @@ source ~/.vim/configs/truecolor.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'arcticicestudio/nord-vim'
 Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -125,6 +124,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
 
 " themes
+Plug 'arcticicestudio/nord-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tomasiser/vim-code-dark'
