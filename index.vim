@@ -71,6 +71,7 @@ map [q :cprevious<CR>
 map ]q :cnext<CR>
 
 nnoremap ; :
+vnoremap ; :
 
 " Plugin configs
 source ~/.vim/configs/airline.vim
