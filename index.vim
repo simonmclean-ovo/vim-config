@@ -42,7 +42,7 @@ endif
 set undodir=~/.vim/undo//
 
 " Source vimrc
-command! -nargs=0 Sauce :source ~/.vimrc
+command! -nargs=0 Source :source ~/.vimrc
 
 " Open this file
 command! -nargs=0 Config :e ~/.vim/configs/index.vim
