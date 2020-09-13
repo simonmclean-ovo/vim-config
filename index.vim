@@ -70,8 +70,20 @@ command! -range Glines :call <SID>GitLogLines(<line1>, <line2>)
 map [q :cprevious<CR>
 map ]q :cnext<CR>
 
+" Quickly enter command mode
 nnoremap ; :
 vnoremap ; :
+
+" Delete next or previous empty line
+" TODO: This is a bit dangerous in that it could make destructive changes that
+" I don't notice. Maybe create a function that bounds the operation within a
+" certain range of lines
+nnoremap <C-k> {dd<c-o>
+nnoremap <C-j> }dd<c-o>
+
+" Add empty line above or below cursor
+nnoremap <leader>k m`O<esc>``
+nnoremap <leader>j m`o<esc>``
 
 " Plugin configs
 source ~/.vim/configs/airline.vim
