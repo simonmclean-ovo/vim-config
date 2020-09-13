@@ -56,45 +56,9 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" TODO: Handle self closing tags
-" - Changing tag name, and
-" - Changing tag to self closing like 'tagname/'
-function! <SID>ChangeElementName()
-  call inputsave()
-  let l:rawInput = input('Change element to: ')
-  call inputrestore()
-  let l:trimmedInput = trim(rawInput)
-  " mark, vis select tag, move to start of vis select
-  :execute "normal! mmvat\<esc>`<"
-  " search to next space or >
-  :execute "normal! / \\|>\<cr>"
-  " change back to <
-  :execute "normal! cT<" . trimmedInput
-  " jump to end of vis select, write closing tag
-  :execute "normal! `>ci</" . trimmedInput
-  " return to mark
-  :execute "normal! `m"
-endfunction
-
-function! <SID>DeleteElement()
-  :execute "normal! vato\<esc>"
-  let l:openLine = line(".")
-  :execute "normal! vat\<esc>"
-  let l:closeLine = line(".")
-  if (openLine == closeLine)
-    :execute "normal! ditvatp"
-  else
-    :execute "normal! `<dd`>dd"
-    " TODO: Maybe format the block that was between the tags?
-  endif
-endfunction
-
 " TODO: this
 function! <SID>DropLine()
 endfunction
-
-nnoremap <leader>ce :call <SID>ChangeElementName()<CR>
-nnoremap <leader>de :call <SID>DeleteElement()<CR>
 
 function <SID>GitLogLines(start, end)
   :execute "Git log -L " . a:start . "," . a:end . ":" . expand('%')
@@ -128,7 +92,6 @@ source ~/.vim/configs/truecolor.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'arcticicestudio/nord-vim'
 Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -146,6 +109,7 @@ Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -156,6 +120,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
 
 " themes
+Plug 'arcticicestudio/nord-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tomasiser/vim-code-dark'
