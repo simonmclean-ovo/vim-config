@@ -82,8 +82,8 @@ nnoremap <C-k> {dd<c-o>
 nnoremap <C-j> }dd<c-o>
 
 " Add empty line above or below cursor
-nnoremap <leader>k m`O<esc>``
-nnoremap <leader>j m`o<esc>``
+nnoremap <leader>k :call append(line('.')-1, '')<CR>
+nnoremap <leader>j :call append(line('.'), '')<CR>
 
 " Plugin configs
 source ~/.vim/configs/airline.vim
