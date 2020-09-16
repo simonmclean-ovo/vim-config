@@ -74,6 +74,9 @@ map ]q :cnext<CR>
 nnoremap ; :
 vnoremap ; :
 
+" Quickly toggle between buffers
+nnoremap <leader><leader> <c-^>
+
 " Delete next or previous empty line
 " TODO: This is a bit dangerous in that it could make destructive changes that
 " I don't notice. Maybe create a function that bounds the operation within a
