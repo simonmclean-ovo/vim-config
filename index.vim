@@ -99,6 +99,7 @@ function! ReplaceMotion(type)
     execute "normal! \<s-p>"
   endif
 
+  let &selection = sel_save
 endfunction
 
 " Plugin configs
