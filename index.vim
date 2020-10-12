@@ -117,6 +117,7 @@ Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'liuchengxu/vista.vim'
 Plug 'mattn/emmet-vim'
