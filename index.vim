@@ -70,6 +70,10 @@ command! -range Glines :call <SID>GitLogLines(<line1>, <line2>)
 map [q :cprevious<CR>
 map ]q :cnext<CR>
 
+" Exclude block navigation from the jumplist
+nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
+nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>
+
 " Quickly enter command mode
 nnoremap ; :
 vnoremap ; :
