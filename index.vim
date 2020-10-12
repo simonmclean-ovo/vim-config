@@ -103,6 +103,7 @@ source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
+source ~/.vim/configs/wiki.vim
 source ~/.vim/configs/yoink.vim
 
 " Misc config
