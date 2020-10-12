@@ -121,6 +121,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'liuchengxu/vista.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
