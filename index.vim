@@ -92,6 +92,23 @@ nnoremap <C-j> }dd<c-o>
 nnoremap <leader>k :call append(line('.')-1, '')<CR>
 nnoremap <leader>j :call append(line('.'), '')<CR>
 
+nnoremap <silent> <leader>p :set operatorfunc=ReplaceMotion<CR>g@
+function! ReplaceMotion(type)
+  let sel_save = &selection
+  let &selection = "inclusive"
+
+  if a:type == 'line'
+    execute "normal! '[V']"
+    silent normal "_dp
+  elseif a:type == 'char'
+    execute "normal! `[v`]"
+    silent normal "_d
+    execute "normal! \<s-p>"
+  endif
+
+  let &selection = sel_save
+endfunction
+
 " Plugin configs
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
