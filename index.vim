@@ -109,6 +109,177 @@ function! ReplaceMotion(type)
   let &selection = sel_save
 endfunction
 
+let g:millerActiveDir = ''
+let g:millerParentDir = ''
+let g:millerPreviewPath = ''
+
+function! ListFiles(fileList)
+  execute "normal! ggdG"
+
+  for file in a:fileList
+    let name = file
+    if (isdirectory(file))
+      let name = name . '/'
+    endif
+    put =name
+  endfor
+  execute "normal! ggdd"
+
+  call ConfigBuffer(1)
+endfunction
+
+function! Miller(path)
+  let concealPattern = "^\/.*\/.\@="
+
+  " prevent buffers from being added to buffer list
+  set nobuflisted
+
+  let g:millerActiveDir = a:path
+
+  tabnew
+  vnew
+  vnew
+
+  call GoWindowRight()
+  call UpdateActiveDir()
+  call UpdateParentDir()
+  call SetPreviewWindow(GetPathUnderCursor())
+endfunction
+
+function! GetDirContents(path)
+  return globpath(a:path, '*', 0, 1)
+endfunction
+
+function! GetParentPath(currentPath)
+  let pathParts = split(a:currentPath, '/')
+  if (len(pathParts))
+    call remove(pathParts, len(pathParts) - 1)
+    let parentPath = '/' . join(pathParts, '/')
+    return parentPath
+  else
+    return 0
+  endif
+endfunction
+
+function! GetPathUnderCursor()
+  normal 0"ay$
+  return @a
+endfunction
+
+function! GoWindowLeft()
+  execute "normal! \<C-w>h"
+endfunction
+
+function! GoWindowRight()
+  execute "normal! \<C-w>l"
+endfunction
+
+function! HandleMoveLeft()
+  if (g:millerParentDir != "/")
+    let g:millerActiveDir = GetParentPath(g:millerActiveDir)
+    call UpdateActiveDir()
+    call UpdateParentDir()
+    call SetPreviewWindow(GetPathUnderCursor())
+  endif
+endfunction
+
+function! HandleMoveDown()
+  execute "normal! j"
+  let l:pathUnderCursor = GetPathUnderCursor()
+  call SetPreviewWindow(l:pathUnderCursor)
+endfunction
+
+function! HandleMoveUp()
+  execute "normal! k"
+  let l:pathUnderCursor = GetPathUnderCursor()
+  call SetPreviewWindow(l:pathUnderCursor)
+endfunction
+
+function! HandleMoveRight()
+  let pathUnderCursor = GetPathUnderCursor()
+  if (isdirectory(pathUnderCursor))
+    let g:millerActiveDir = pathUnderCursor
+    call UpdateActiveDir()
+    call UpdateParentDir()
+    call SetPreviewWindow(GetPathUnderCursor())
+  else
+    echo "OPEN!"
+  endif
+endfunction
+
+" Assumes that g:millerActiveDir has been updated, and is the focused window
+function! UpdateActiveDir()
+  call EnableBufferEdit()
+  call ListFiles(GetDirContents(g:millerActiveDir))
+  call ConfigBuffer(1)
+endfunction
+
+" Assumes that g:millerActiveDir has been updated, and is the focused window
+function! UpdateParentDir()
+  let g:millerParentDir = GetParentPath(g:millerActiveDir)
+  call GoWindowLeft()
+  call EnableBufferEdit()
+  let dirContents = GetDirContents(g:millerParentDir)
+  if (g:millerParentDir != "/")
+    call ListFiles(GetDirContents(g:millerParentDir))
+  else
+    execute 'normal! ggdG'
+    call setline('.', "/")
+  endif
+  call ConfigBuffer(1)
+  call GoWindowRight()
+endfunction
+
+" Assumes that g:millerActiveDir has been updated, and is the focused window
+function! SetPreviewWindow(path)
+  call GoWindowRight()
+  call EnableBufferEdit()
+  if (isdirectory(a:path))
+    let dirContents = GetDirContents(a:path)
+    if (len(dirContents) > 0)
+      call ListFiles(dirContents)
+    else
+      execute 'normal! ggdG'
+      call setline('.', "empty directory")
+    endif
+  else
+    execute 'normal! ggdG'
+    execute 'read' a:path
+    execute 'normal! ggdd'
+  endif
+  call ConfigBuffer(0)
+  setlocal syntax=off
+  call GoWindowLeft()
+endfunction
+
+function! ConfigBuffer(isDir)
+  setlocal readonly
+  setlocal nomodifiable
+  setlocal nobuflisted
+  setlocal buftype=nowrite
+  setlocal bufhidden=delete
+  setlocal noswapfile
+
+  if (a:isDir)
+    setlocal filetype=miller
+  endif
+endfunction
+
+function! EnableBufferEdit()
+  setlocal noreadonly
+  setlocal modifiable
+endfunction
+
+augroup miller
+  autocmd!
+  autocmd FileType miller nnoremap <silent> <buffer> h :call HandleMoveLeft()<cr>
+  autocmd FileType miller nnoremap <silent> <buffer> j :call HandleMoveDown()<cr>
+  autocmd FileType miller nnoremap <silent> <buffer> k :call HandleMoveUp()<cr>
+  autocmd FileType miller nnoremap <silent> <buffer> l :call HandleMoveRight()<cr>
+augroup END
+
+command! Miller :call Miller(expand('%:p:h'))<CR>
+
 " Plugin configs
 source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
