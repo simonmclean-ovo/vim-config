@@ -123,16 +123,18 @@ function! ListFiles(fileList)
     endif
     put =name
   endfor
-  execute "normal! ggdd"
 
-  call ConfigBuffer(1)
+  execute "normal! ggdd"
 endfunction
 
+" starts with /
+" any number of any chars up to / inclusive
+" if the / is followed by any chars
+" let concealPattern = /^\/.*\/.\@=/
+syntax match PathExcludingFileName /^\/.*\/.\@=/ conceal
+" highlight link PathExcludingFileName ErrorMsg
+
 function! Miller(path)
-  " starts with /
-  " any number of any chars up to / inclusive
-  " if the / is followed by any chars
-  let concealPattern = "^\/.*\/.\@="
 
   " prevent buffers from being added to buffer list
   set nobuflisted
@@ -150,7 +152,8 @@ function! Miller(path)
 endfunction
 
 function! GetDirContents(path)
-  return globpath(a:path, '*', 0, 1)
+  " First glob returns paths that would otherwise be hidden, such as dotfiles
+  return glob(a:path . "/.[^.]*", 1, 1) + globpath(a:path, '*', 1, 1)
 endfunction
 
 function! GetParentPath(currentPath)
@@ -214,7 +217,7 @@ endfunction
 function! UpdateActiveDir()
   call EnableBufferEdit()
   call ListFiles(GetDirContents(g:millerActiveDir))
-  call ConfigBuffer(1)
+  call ConfigBuffer(1, '')
 endfunction
 
 " Assumes that g:millerActiveDir has been updated, and is the focused window
@@ -229,7 +232,13 @@ function! UpdateParentDir()
     execute 'normal! ggdG'
     call setline('.', "/")
   endif
-  call ConfigBuffer(1)
+  if (g:millerParentDir != "/")
+    let highlightedStr = split(g:millerActiveDir, "/")[-1] . "/"
+    echo("CURRENT " . highlightedStr)
+    call ConfigBuffer(1, highlightedStr)
+  else
+    call ConfigBuffer(1, '')
+  endif
   call GoWindowRight()
 endfunction
 
@@ -250,12 +259,12 @@ function! SetPreviewWindow(path)
     execute 'read' a:path
     execute 'normal! ggdd'
   endif
-  call ConfigBuffer(0)
+  call ConfigBuffer(0, '')
   setlocal syntax=off
   call GoWindowLeft()
 endfunction
 
-function! ConfigBuffer(isDir)
+function! ConfigBuffer(isDir, highlightedStr)
   setlocal readonly
   setlocal nomodifiable
   setlocal nobuflisted
@@ -265,6 +274,13 @@ function! ConfigBuffer(isDir)
 
   if (a:isDir)
     setlocal filetype=miller
+    syntax match PathExcludingFileName /^\/.*\/.\@=/ conceal
+
+    if (len(a:highlightedStr) > 0)
+      echo("HI " . a:highlightedStr)
+      execute "syntax match HighlightedDir '" . a:highlightedStr . "'"
+      highlight link HighlightedDir Search
+    endif
   endif
 endfunction
 
@@ -294,7 +310,7 @@ source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
-source ~/.vim/configs/wiki.vim
+" source ~/.vim/configs/wiki.vim
 source ~/.vim/configs/yoink.vim
 
 " Misc config
