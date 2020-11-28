@@ -70,9 +70,16 @@ command! -range Glines :call <SID>GitLogLines(<line1>, <line2>)
 map [q :cprevious<CR>
 map ]q :cnext<CR>
 
+" Exclude block navigation from the jumplist
+nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
+nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>
+
 " Quickly enter command mode
 nnoremap ; :
 vnoremap ; :
+
+" Quickly toggle between buffers
+nnoremap <leader><leader> <c-^>
 
 " Delete next or previous empty line
 " TODO: This is a bit dangerous in that it could make destructive changes that
@@ -113,6 +120,7 @@ source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
+source ~/.vim/configs/wiki.vim
 source ~/.vim/configs/yoink.vim
 
 " Misc config
@@ -126,10 +134,12 @@ Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'liuchengxu/vista.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
@@ -146,15 +156,18 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/svg.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
 
 " themes
 Plug 'arcticicestudio/nord-vim'
+Plug 'fcpg/vim-farout'
 Plug 'joshdick/onedark.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -165,6 +178,7 @@ call plug#end()
 " source ~/.vim/configs/themes/molokai.vim
 " source ~/.vim/configs/themes/onedark.vim
 " source ~/.vim/configs/themes/hybrid-material.vim
-source ~/.vim/configs/themes/nord.vim
+" source ~/.vim/configs/themes/nord.vim
 
+colorscheme farout
 source ~/.vim/configs/italic-highlights.vim

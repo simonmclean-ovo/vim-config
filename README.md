@@ -30,13 +30,7 @@ This config includes some highlighting of special words which sets them to itali
 iTerm2 doesn't seem to like rendering italic and regular fonts at the same time.
 To fix this create a file called `xterm-256color-italic.terminfo`, and insert the following:
 
-```
-xterm-256color-italic|xterm with 256 colors and italic,
-  sitm=\E[3m, ritm=\E[23m,
-  use=xterm-256color,
-```
-
-Then run `tic xterm-256color-italic.terminfo` on the file. Then in the iTerm preferences go to
+To fix this, run `tic xterm-256color-italic.terminfo` (file is in this repo). Then in the iTerm preferences go to
 Profiles > Terminal and set "Report Terminal Type" to "xterm-256color-italic".
 
 Restart iTerm2.

@@ -1,4 +1,5 @@
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-vetur', 'coc-eslint', 'coc-prettier', 'coc-tslint-plugin', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-vetur', 'coc-eslint', 'coc-prettier', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-vetur', 'coc-eslint', 'coc-prettier']
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " TextEdit might fail if hidden is not set.
