@@ -129,6 +129,9 @@ function! ListFiles(fileList)
 endfunction
 
 function! Miller(path)
+  " starts with /
+  " any number of any chars up to / inclusive
+  " if the / is followed by any chars
   let concealPattern = "^\/.*\/.\@="
 
   " prevent buffers from being added to buffer list
