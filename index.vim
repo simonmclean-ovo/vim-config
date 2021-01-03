@@ -120,7 +120,7 @@ source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
-source ~/.vim/configs/wiki.vim
+" source ~/.vim/configs/wiki.vim
 source ~/.vim/configs/yoink.vim
 
 " Misc config
@@ -134,7 +134,7 @@ Plug 'bkad/camelcasemotion'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-dirvish'
+" Plug 'justinmk/vim-dirvish'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'liuchengxu/vista.vim'
 Plug 'mattn/emmet-vim'
@@ -159,6 +159,7 @@ Plug 'vim-scripts/svg.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
+Plug '~/code/vim-threeway'
 
 " themes
 Plug 'arcticicestudio/nord-vim'
