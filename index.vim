@@ -169,6 +169,7 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'ghifarit53/daycula-vim' , {'branch' : 'main'}
 
 call plug#end()
 
@@ -181,5 +182,5 @@ call plug#end()
 " source ~/.vim/configs/themes/hybrid-material.vim
 " source ~/.vim/configs/themes/nord.vim
 
-colorscheme farout
+colorscheme daycula
 source ~/.vim/configs/italic-highlights.vim
