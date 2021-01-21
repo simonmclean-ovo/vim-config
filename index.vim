@@ -10,6 +10,8 @@ set clipboard=unnamed
 set nowrap
 let mapleader = " "
 
+nnoremap <leader>- :Tryptic<cr>
+
 " Syntax highlighting
 set synmaxcol=200
 
@@ -114,14 +116,13 @@ source ~/.vim/configs/airline.vim
 source ~/.vim/configs/camelcasemotion.vim
 source ~/.vim/configs/coc.vim
 source ~/.vim/configs/emmet.vim
-source ~/.vim/configs/floaterm.vim
 source ~/.vim/configs/fzf.vim
 source ~/.vim/configs/git-gutter.vim
 source ~/.vim/configs/indentline.vim
 source ~/.vim/configs/polyglot.vim
 source ~/.vim/configs/whichkey.vim
-" source ~/.vim/configs/wiki.vim
 source ~/.vim/configs/yoink.vim
+source ~/.vim/configs/tryptic.vim
 
 " Misc config
 source ~/.vim/configs/truecolor.vim
@@ -156,10 +157,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/svg.vim'
-Plug 'vimwiki/vimwiki'
-Plug 'voldikss/vim-floaterm'
 Plug 'yggdroot/indentline'
-Plug '~/code/vim-threeway'
+Plug '~/code/tryptic'
 
 " themes
 Plug 'arcticicestudio/nord-vim'
