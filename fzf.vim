@@ -8,4 +8,4 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 :map <C-f> :GGrep<CR>
-:map <C-p> :GFiles<CR>
+:map <C-p> :GFiles --exclude-standard --others --cached<CR>
