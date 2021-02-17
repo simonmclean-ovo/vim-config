@@ -58,9 +58,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" TODO: this
-function! <SID>DropLine()
-endfunction
+command! Master :Git checkout master | Gfetch --prune | Gpull
 
 function <SID>GitLogLines(start, end)
   :execute "Git log -L " . a:start . "," . a:end . ":" . expand('%')
