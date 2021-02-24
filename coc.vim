@@ -9,6 +9,7 @@ let g:coc_global_extensions = [
   \'coc-rust-analyzer',
   \'coc-eslint',
   \'coc-deno',
+  \'coc-metals',
   \]
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -62,7 +63,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 " nmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>F  :call CocAction('format')<CR>
+nmap <leader>F  :call CocActionAsync('format')<CR>
 
 augroup mygroup
   autocmd!
